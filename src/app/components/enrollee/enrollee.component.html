@@ -1,0 +1,36 @@
+<div class="container my-5">
+    <div class="row">
+        <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+            <thead class="sticky-top">
+                <tr>
+                    <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements"
+                        [sortBy]="headElements[i]" scope="col">{{head | titlecase}}
+                        <mdb-icon fas icon="sort"></mdb-icon>
+                    </th>
+                </tr>
+            </thead>
+            <tbody #row>
+                <tr mdbTableCol *ngFor="let el of elements; let i = index">
+                    <th scope="row">{{el.id}}
+                    </th>
+                    <td class="text-capitalize">{{el.name}}
+                    </td>
+                    <td>
+                        {{el.dateOfBirth}}
+                    </td>
+                    <td>
+                        <span class="p-2 badge"
+                            [ngClass]="el.active ? 'badge-success' : 'badge-danger'">{{getValue(el.active)}} <i
+                                [ngClass]="el.active ? 'fas fa-check pl-1' : 'fas fa-times pl-1'"></i></span>
+                    </td>
+                    <td>
+                        <span class="table-remove">
+                            <button type="button" mdbBtn color="primary" size="sm" class="my-0"
+                                (click)="editEnrollee(el.id)">Edit</button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
